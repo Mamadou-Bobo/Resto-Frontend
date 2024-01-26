@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthRequest } from '../../../core/models/authRequest';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
@@ -14,7 +14,7 @@ import { JWTResponseDTO } from '../../../core/models/JWTResponseDTO';
   styleUrl: './login.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   authRequest!: AuthRequest;
 
@@ -36,6 +36,11 @@ export class LoginComponent implements OnInit {
               private formBuilder: FormBuilder,
               private router: Router,
               private authService: AuthService) {}
+
+  ngOnDestroy(): void {
+    this.destroy$.next(false);
+    this.destroy$.unsubscribe();
+  }
 
   ngOnInit(): void {
     this.password = 'password';
