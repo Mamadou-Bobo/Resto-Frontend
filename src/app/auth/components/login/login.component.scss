@@ -54,19 +54,28 @@
       }
 
       button {
-        margin-top: 15%;
-        padding: 12px;
+        &#login-btn {
+          margin-top: 15%;
+          padding: 12px;
 
-        background-color: #4F80E1;
-        color: #fff;
-        font-size: 18px;
-        outline: none;
+          background-color: #4F80E1;
+          color: #fff;
+          font-size: 18px;
+          outline: none;
 
-        border: none;
-        border-radius: 3px;
+          border: none;
+          border-radius: 3px;
+          cursor: pointer;
+        }
+      }
+
+      .fas {
+        position: absolute;
+        margin-top: 70px;
+        margin-left: 300px;
+
         cursor: pointer;
       }
     }
   }
 }
-

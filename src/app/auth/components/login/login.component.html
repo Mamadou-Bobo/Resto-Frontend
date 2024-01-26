@@ -6,11 +6,15 @@
         <div class="text-message">
             <h1>Welcome to your restaurant management system</h1>
         </div>
+        <form [formGroup]="authRequestForm">
         <div class="form-content">
-            <input type="text" placeholder="Enter your username">
-            <input type="password" placeholder="Enter your password">
-            <a routerLink="/reset-password">Forgot your password?</a>
-            <button>Login</button>
-        </div>
+                <input formControlName="username" type="text" placeholder="Enter your username">
+                <input formControlName="password" [type]="password" placeholder="Enter your password">
+                <fa-icon class="fas" aria-hidden="true" (click)="onClick()" *ngIf="show" [icon]="faEye"></fa-icon>
+                <fa-icon class="fas" aria-hidden="true" (click)="onClick()" *ngIf="!show" [icon]="faEyeSlash"></fa-icon>
+                <a routerLink="/reset-password">Forgot your password?</a>
+                <button id="login-btn" (click)="login()">Login</button>
+            </div>
+        </form>
     </div>
 </div>
