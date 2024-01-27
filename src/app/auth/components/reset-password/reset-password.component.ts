@@ -14,7 +14,9 @@ import { SnackBar } from '../../../shared/models/SnackBar';
 })
 export class ResetPasswordComponent implements OnDestroy { 
 
-  email!: Email;
+  email: Email = {
+    recipient: ''
+  };
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
@@ -32,11 +34,11 @@ export class ResetPasswordComponent implements OnDestroy {
   }
 
   protected sendCode(): void {
-    let snackbar: SnackBar;
-
     if(this.resetPasswordForm.valid) {
 
-      this.email = this.resetPasswordForm.value;
+      this.email.recipient = this.resetPasswordForm.value;
+
+      console.log(this.email);
 
       this.resetPasswordService.sendResetPasswordCode(this.email).pipe(takeUntil(this.destroy$)).subscribe({
         next: (data) => {
@@ -47,18 +49,17 @@ export class ResetPasswordComponent implements OnDestroy {
         },
       });
     } else if(this.resetPasswordForm.hasError('pattern')) {
-      snackbar = this.setSnackBar('Please enter a valid email','snackbar-err');
-      this.snackBarService.openSnackBar(snackbar);
+      this.setSnackBar('Please enter a valid email','snackbar-err');
     } else {
-      snackbar = this.setSnackBar('Please fill all fields','snackbar-err');
-      this.snackBarService.openSnackBar(snackbar);
+      this.setSnackBar('Please fill all fields','snackbar-err');
     }
   }
 
-  private setSnackBar(message: string, className: string): SnackBar {
-    return {
+  private setSnackBar(message: string, className: string): void {
+    let snackbar: SnackBar = {
       message: message,
       className: className
     }
+    this.snackBarService.openSnackBar(snackbar);
   }
 }
