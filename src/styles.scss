@@ -10,7 +10,11 @@ body { margin: 0;  font-family: -apple-system, system-ui, BlinkMacSystemFont,'Ro
         --mdc-snackbar-container-color: #EA2027;
         --mdc-snackbar-supporting-text-color: #fff;
         --mat-snack-bar-button-color: #fff;
-        
+
+        .mdc-snackbar__label,
+        .mdc-button__label {
+            font-size: 16px;
+        }
     }
 
     &.snackbar-success {
