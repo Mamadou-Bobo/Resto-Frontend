@@ -14,6 +14,6 @@ export class ResetPasswordService {
     constructor(private httpClient: HttpClient) {}
 
     public sendResetPasswordCode(email: Email): Observable<Object> {
-        return this.httpClient.post(this.API_URL + "/password/reset/code", email);
+        return this.httpClient.post<Object>(this.API_URL + "/password/reset/code", email);
     }
 }
