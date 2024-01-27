@@ -5,25 +5,28 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { SharedRoutingModule } from './shared-routing.module';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SnackbarComponent } from './components/snackbar/snackbar.component';
 
 @NgModule({
-  declarations: [
-    ForbiddenComponent
-  ],
+  declarations: [ForbiddenComponent, SnackbarComponent],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
     HttpClientModule,
-    SharedRoutingModule
+    SharedRoutingModule,
+    MatSnackBarModule
   ],
   exports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
-    SharedRoutingModule
-  ]
+    SharedRoutingModule,
+    SnackbarComponent
+  ],
 })
-export class SharedModule { }
+export class SharedModule
+ {}

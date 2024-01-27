@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import { LoginService } from '../../services/login.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { JWTResponseDTO } from '../../../core/models/JWTResponseDTO';
+import { SnackBarService } from '../../../shared/services/snackbar.service';
+import { SnackBar } from '../../../shared/models/SnackBar';
 
 @Component({
   selector: 'app-login',
@@ -34,8 +36,9 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(private loginService: LoginService,
               private formBuilder: FormBuilder,
-              private router: Router,
-              private authService: AuthService) {}
+              public router: Router,
+              public authService: AuthService,
+              private snackBarService: SnackBarService) {}
 
   ngOnDestroy(): void {
     this.destroy$.next(false);
@@ -47,18 +50,24 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   protected login(): void {
+    let snackbar: any;
+
     if(this.authRequestForm.valid) {
       this.authRequest = this.authRequestForm.value;
 
       this.loginService.login(this.authRequest).pipe(takeUntil(this.destroy$)).subscribe({
         next: (data: JWTResponseDTO) => {
+          console.log(data);
           this.router.navigate(['dashboard']);
-          this.authService.setToken(data.access_token,data.refresh_token);
         },
-        error(err) {
-          console.error(err);
+        error: (err: any) => {
+          snackbar = this.setSnackBar(err.error.reason,'snackbar-err');
+          this.snackBarService.openSnackBar(snackbar);
         },
       });
+    } else {
+      snackbar = this.setSnackBar('Please fill all fields','snackbar-err');
+      this.snackBarService.openSnackBar(snackbar);
     }
   }
 
@@ -69,6 +78,13 @@ export class LoginComponent implements OnInit, OnDestroy {
     } else {
       this.password = 'password';
       this.show = false;
+    }
+  }
+
+  private setSnackBar(message: string, className: string): SnackBar {
+    return {
+      message: message,
+      className: className
     }
   }
 }
