@@ -7,9 +7,11 @@ import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { SharedRoutingModule } from './shared-routing.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
+import { ProgressSpinnerComponent } from './components/progress-spinner/progress-spinner.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
-  declarations: [ForbiddenComponent, SnackbarComponent],
+  declarations: [ForbiddenComponent, SnackbarComponent, ProgressSpinnerComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -17,7 +19,8 @@ import { SnackbarComponent } from './components/snackbar/snackbar.component';
     FontAwesomeModule,
     HttpClientModule,
     SharedRoutingModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     CommonModule,
@@ -25,7 +28,8 @@ import { SnackbarComponent } from './components/snackbar/snackbar.component';
     ReactiveFormsModule,
     FontAwesomeModule,
     SharedRoutingModule,
-    SnackbarComponent
+    SnackbarComponent,
+    ProgressSpinnerComponent
   ],
 })
 export class SharedModule

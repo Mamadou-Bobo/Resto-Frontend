@@ -23,3 +23,7 @@ body { margin: 0;  font-family: -apple-system, system-ui, BlinkMacSystemFont,'Ro
         --mat-snack-bar-button-color: #fff;
     }
 }
+
+.mat-mdc-progress-spinner {
+    z-index: auto;
+}

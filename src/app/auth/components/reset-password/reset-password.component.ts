@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { Email } from '../../../shared/models/Email';
 import { ResetPasswordService } from '../../services/reset-password.service';
 import { Subject, takeUntil } from 'rxjs';
@@ -9,10 +9,11 @@ import { SnackBar } from '../../../shared/models/SnackBar';
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.component.html',
-  styleUrl: './reset-password.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrl: './reset-password.component.scss'
 })
-export class ResetPasswordComponent implements OnDestroy { 
+export class ResetPasswordComponent implements OnDestroy {
+
+  isLoading: boolean = false;
 
   email: Email = {
     recipient: ''
@@ -36,9 +37,9 @@ export class ResetPasswordComponent implements OnDestroy {
   protected sendCode(): void {
     if(this.resetPasswordForm.valid) {
 
-      this.email.recipient = this.resetPasswordForm.value;
+      this.isLoading = true;
 
-      console.log(this.email);
+      this.email.recipient = this.resetPasswordForm.value;
 
       this.resetPasswordService.sendResetPasswordCode(this.email).pipe(takeUntil(this.destroy$)).subscribe({
         next: (data) => {
@@ -46,6 +47,9 @@ export class ResetPasswordComponent implements OnDestroy {
         },
         error: (err) => {
           console.log(err);
+        },
+        complete: () => {
+          this.isLoading = false;
         },
       });
     } else if(this.resetPasswordForm.hasError('pattern')) {
