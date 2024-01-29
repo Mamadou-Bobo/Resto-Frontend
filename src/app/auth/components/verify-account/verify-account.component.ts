@@ -7,11 +7,11 @@ import { SnackBarService } from '../../../shared/services/snackbar.service';
 import { SnackBar } from '../../../shared/models/SnackBar';
 
 @Component({
-  selector: 'app-reset-password',
-  templateUrl: './reset-password.component.html',
-  styleUrl: './reset-password.component.scss'
+  selector: 'verify-account',
+  templateUrl: './verify-account.component.html',
+  styleUrl: './verify-account.component.scss'
 })
-export class ResetPasswordComponent implements OnDestroy {
+export class VerifyAccountComponent implements OnDestroy {
 
   isLoading: boolean = false;
 
@@ -53,13 +53,13 @@ export class ResetPasswordComponent implements OnDestroy {
         },
       });
     } else if(this.resetPasswordForm.hasError('pattern')) {
-      this.setSnackBar('Please enter a valid email','snackbar-err');
+      this.openSnackBar('Please enter a valid email','snackbar-err');
     } else {
-      this.setSnackBar('Please fill all fields','snackbar-err');
+      this.openSnackBar('Please fill all fields','snackbar-err');
     }
   }
 
-  private setSnackBar(message: string, className: string): void {
+  private openSnackBar(message: string, className: string): void {
     let snackbar: SnackBar = {
       message: message,
       className: className

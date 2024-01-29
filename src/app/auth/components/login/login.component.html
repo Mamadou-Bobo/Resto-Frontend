@@ -12,7 +12,7 @@
                 <input formControlName="password" [type]="password" placeholder="Enter your password">
                 <fa-icon class="fas" aria-hidden="true" (click)="onClick()" *ngIf="show" [icon]="faEye"></fa-icon>
                 <fa-icon class="fas" aria-hidden="true" (click)="onClick()" *ngIf="!show" [icon]="faEyeSlash"></fa-icon>
-                <a routerLink="/reset-password">Forgot your password?</a>
+                <a routerLink="/verify-account">Forgot your password?</a>
                 <button id="login-btn" (click)="login()">Login</button>
             </div>
         </form>

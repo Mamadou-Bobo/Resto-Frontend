@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { VerifyAccountComponent } from './components/verify-account/verify-account.component';
 import { LoginComponent } from './components/login/login.component';
+import { UpdatePasswordComponent } from './components/update-password/update-password.component';
 
 const authRoutes: Routes = [
     {
@@ -9,8 +10,12 @@ const authRoutes: Routes = [
         component: LoginComponent
     },
     {
+        path: 'verify-account',
+        component: VerifyAccountComponent
+    },
+    {
         path: 'reset-password',
-        component: ResetPasswordComponent
+        component: UpdatePasswordComponent
     }
 ];
 
