@@ -18,7 +18,7 @@
       margin-top: 10%;
 
       h1 {
-        font-size: 20px;
+        font-size: 22px;
         text-align: center;
         font-weight: 500;
       }
@@ -41,7 +41,7 @@
         font-size: 16px;
 
         &::placeholder {
-          font-size: 16px;
+          font-size: 17px;
         }
 
         &:focus {
@@ -53,6 +53,12 @@
         text-align: right;
         text-decoration: none;
         color: #1355c0;
+        font-size: 16px;
+
+        width: fit-content;
+        position: relative;
+        left: 100%;
+        transform: translateX(-100%);
       }
 
       button {
@@ -62,7 +68,7 @@
 
           background-color: #4F80E1;
           color: #fff;
-          font-size: 18px;
+          font-size: 20px;
           outline: none;
 
           border: none;
