@@ -40,7 +40,8 @@ export class AuthInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     if (
       req.url.includes(this.loginService.API_URL + '/auth/authenticate') ||
-      req.url.includes(this.loginService.API_URL + '/password/reset/code')
+      req.url.includes(this.loginService.API_URL + '/password/verify-account') ||
+      req.url.includes(this.loginService.API_URL + '/password/reset-password')
     ) {
       return next.handle(req.clone());
     }
