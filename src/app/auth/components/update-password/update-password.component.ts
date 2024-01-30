@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
+import { AfterContentInit, ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { SnackBarService } from '../../../shared/services/snackbar.service';
 import { SnackBar } from '../../../shared/models/SnackBar';
@@ -12,7 +12,7 @@ import { Subject, takeUntil } from 'rxjs';
   styleUrl: './update-password.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UpdatePasswordComponent implements OnDestroy { 
+export class UpdatePasswordComponent implements OnDestroy, AfterContentInit { 
 
   updatePasswordForm: FormGroup = this.formBuilder.group({
     code: ['', Validators.required],
@@ -29,6 +29,10 @@ export class UpdatePasswordComponent implements OnDestroy {
   constructor(private formBuilder: FormBuilder,
               private snackBarService: SnackBarService,
               private resetPasswordService: ResetPasswordService) {}
+
+  ngAfterContentInit(): void {
+    this.openSnackBar('An email has been sent to you with the code please check your account', 'snackbar-success');
+  }
   
   ngOnDestroy(): void {
     this.destroy$.next(false);

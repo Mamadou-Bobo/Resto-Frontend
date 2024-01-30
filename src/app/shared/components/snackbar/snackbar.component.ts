@@ -13,7 +13,7 @@ export class SnackbarComponent implements OnInit {
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
 
-  private readonly duration: number = 5; // 5 seconds
+  private readonly duration: number = 5; // in seconds
 
   constructor(private _snackBar: MatSnackBar,
               private snackBarService: SnackBarService) {}

@@ -5,6 +5,7 @@ import { ResetPasswordService } from '../../services/reset-password.service';
 import { Subject, takeUntil } from 'rxjs';
 import { SnackBarService } from '../../../shared/services/snackbar.service';
 import { SnackBar } from '../../../shared/models/SnackBar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'verify-account',
@@ -27,7 +28,8 @@ export class VerifyAccountComponent implements OnDestroy {
   ]);
 
   constructor(private resetPasswordService: ResetPasswordService,
-              private snackBarService: SnackBarService) {}
+              private snackBarService: SnackBarService,
+              private router: Router) {}
 
   ngOnDestroy(): void {
     this.destroy$.next(false);
@@ -41,17 +43,22 @@ export class VerifyAccountComponent implements OnDestroy {
 
       this.email.recipient = this.resetPasswordForm.value;
 
-      this.resetPasswordService.sendResetPasswordCode(this.email).pipe(takeUntil(this.destroy$)).subscribe({
-        next: (data) => {
-          console.log(data);
-        },
-        error: (err) => {
-          console.log(err);
-        },
-        complete: () => {
-          this.isLoading = false;
-        },
-      });
+      setTimeout(() => {
+        this.resetPasswordService.sendResetPasswordCode(this.email).pipe(takeUntil(this.destroy$)).subscribe({
+          next: (data) => {
+            console.log(data);
+          },
+          error: (err) => {
+            console.log(err);
+          },
+          complete: () => {
+            this.isLoading = false;
+          },
+        });
+        this.router.navigate(['reset-password']);
+      }, 10000);
+
+
     } else if(this.resetPasswordForm.hasError('pattern')) {
       this.openSnackBar('Please enter a valid email','snackbar-err');
     } else {
