@@ -58,6 +58,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.loginService.login(this.authRequest).pipe(takeUntil(this.destroy$)).subscribe({
         next: (data: JWTResponseDTO) => {
           console.log(data);
+          this.authService.setToken(data.access_token,data.refresh_token);
           this.router.navigate(['dashboard']);
         },
         error: (err: any) => {
