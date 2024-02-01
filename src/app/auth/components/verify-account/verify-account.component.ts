@@ -56,7 +56,7 @@ export class VerifyAccountComponent implements OnDestroy {
           },
         });
         this.router.navigate(['reset-password']);
-      }, 10000);
+      }, 5000);
 
 
     } else if(this.resetPasswordForm.hasError('pattern')) {

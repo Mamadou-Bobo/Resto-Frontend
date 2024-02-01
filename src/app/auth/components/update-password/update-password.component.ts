@@ -5,12 +5,12 @@ import { SnackBar } from '../../../shared/models/SnackBar';
 import { ResetPasswordRequest } from '../../model/ResetPasswordRequest';
 import { ResetPasswordService } from '../../services/reset-password.service';
 import { Subject, takeUntil } from 'rxjs';
+import { SnackBarConfig } from '../../../shared/models/SnackBarConfig';
 
 @Component({
   selector: 'update-password',
   templateUrl: './update-password.component.html',
-  styleUrl: './update-password.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrl: './update-password.component.scss'
 })
 export class UpdatePasswordComponent implements OnDestroy, AfterContentInit { 
 
@@ -48,11 +48,11 @@ export class UpdatePasswordComponent implements OnDestroy, AfterContentInit {
       } else {
         this.resetPasswordService.resetPassword(this.resetPasswordRequest)
           .pipe(takeUntil(this.destroy$)).subscribe({
-          next: (data: any) => {
-            
+          next: (data) => {
+            console.log(data);
           },
           error: (err) => {
-
+            this.openSnackBar(err.error,'snackbar-err');
           }
         })
       }
