@@ -2,8 +2,16 @@
 
 @import "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
 
-html, body { height: 100%; }
-*,body { margin: 0;  font-family: 'Roboto', sans-serif; }
+html,
+body {
+    height: 100%;
+}
+
+*,
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
 
 .mat-mdc-snack-bar-container {
     &.snackbar-err {
@@ -28,3 +36,10 @@ html, body { height: 100%; }
     z-index: auto;
 }
 
+.mat-icon {
+    cursor: pointer;
+}
+
+.mat-mdc-form-field {
+    height: 65px;
+}

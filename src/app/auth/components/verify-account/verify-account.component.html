@@ -8,7 +8,10 @@
                 Do not panic!! An email will be sent to you to update your password.</h1>
         </div>
         <div class="form-content">
-            <input [formControl]="resetPasswordForm" type="text" placeholder="Enter your email address">
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput [formControl]="resetPasswordForm" type="text" placeholder="Enter your email address">
+            </mat-form-field>
             <button (click)="sendCode()">Send code</button>
         </div>
     </div>

@@ -62,7 +62,7 @@ export class VerifyAccountComponent implements OnDestroy {
     } else if(this.resetPasswordForm.hasError('pattern')) {
       this.openSnackBar('Please enter a valid email','snackbar-err');
     } else {
-      this.openSnackBar('Please fill all fields','snackbar-err');
+      this.openSnackBar('Please enter your email address','snackbar-err');
     }
   }
 

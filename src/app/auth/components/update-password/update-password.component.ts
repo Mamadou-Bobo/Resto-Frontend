@@ -26,6 +26,11 @@ export class UpdatePasswordComponent implements OnDestroy, AfterContentInit {
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
+  password: string = 'password';
+  confPassword: string = 'password';
+  showPassword: boolean = false;
+  showConfPassword: boolean = false;
+
   constructor(private formBuilder: FormBuilder,
               private snackBarService: SnackBarService,
               private resetPasswordService: ResetPasswordService) {}
@@ -44,7 +49,7 @@ export class UpdatePasswordComponent implements OnDestroy, AfterContentInit {
       this.resetPasswordRequest = this.updatePasswordForm.value
 
       if(this.resetPasswordRequest.password !== this.confirmPassword.value) {
-        this.openSnackBar('The two passwords does not match', 'snackbar-err');
+        this.openSnackBar('The two passwords do not match', 'snackbar-err');
       } else {
         this.resetPasswordService.resetPassword(this.resetPasswordRequest)
           .pipe(takeUntil(this.destroy$)).subscribe({
@@ -67,5 +72,25 @@ export class UpdatePasswordComponent implements OnDestroy, AfterContentInit {
       className: className
     }
     this.snackBarService.openSnackBar(snackbar);
+  }
+
+  protected onPasswordClick(): void {
+    if (this.password === 'password') {
+      this.password = 'text';
+      this.showPassword = true;
+    } else {
+      this.password = 'password';
+      this.showPassword = false;
+    }
+  }
+
+  protected onConfPasswordClick(): void {
+    if (this.confPassword === 'password') {
+      this.confPassword = 'text';
+      this.showConfPassword = true;
+    } else {
+      this.confPassword = 'password';
+      this.showConfPassword = false;
+    }
   }
 }
