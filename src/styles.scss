@@ -3,7 +3,7 @@
 @import "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
 
 html, body { height: 100%; }
-body { margin: 0;  font-family: -apple-system, system-ui, BlinkMacSystemFont,'Roboto', sans-serif; }
+*,body { margin: 0;  font-family: 'Roboto', sans-serif; }
 
 .mat-mdc-snack-bar-container {
     &.snackbar-err {
@@ -27,3 +27,4 @@ body { margin: 0;  font-family: -apple-system, system-ui, BlinkMacSystemFont,'Ro
 .mat-mdc-progress-spinner {
     z-index: auto;
 }
+

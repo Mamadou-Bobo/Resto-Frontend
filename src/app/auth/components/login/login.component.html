@@ -8,12 +8,21 @@
         </div>
         <form [formGroup]="authRequestForm">
         <div class="form-content">
-                <input formControlName="username" type="text" placeholder="Enter your username">
-                <input formControlName="password" [type]="password" placeholder="Enter your password">
-                <fa-icon class="fas" aria-hidden="true" (click)="onClick()" *ngIf="show" [icon]="faEye"></fa-icon>
-                <fa-icon class="fas" aria-hidden="true" (click)="onClick()" *ngIf="!show" [icon]="faEyeSlash"></fa-icon>
-                <a routerLink="/verify-account">Forgot your password?</a>
-                <button id="login-btn" (click)="login()">Login</button>
+            <mat-form-field appearance="outline">
+                <mat-label>Username</mat-label>
+                <input formControlName="username" matInput placeholder="Enter your username">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input formControlName="password" matInput [type]="password" placeholder="Enter your password">
+                @if (!show) {
+                    <mat-icon (click)="onClick()" matSuffix>remove_red_eye</mat-icon>
+                }@else {
+                    <mat-icon (click)="onClick()" matSuffix>visibility_off</mat-icon>
+                }
+            </mat-form-field>
+            <a routerLink="/verify-account">Forgot your password?</a>
+            <button id="login-btn" (click)="login()">Login</button>
             </div>
         </form>
     </div>

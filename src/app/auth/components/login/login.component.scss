@@ -31,9 +31,9 @@
       flex-direction: column;
 
       input {
-        padding: 14px;
-        margin: 0;
-        margin-bottom: 10px;
+        // padding: 14px;
+        // margin: 0;
+        // margin-bottom: 10px;
 
         border: 2px solid #ccc;
         border-radius: 3px;
@@ -86,4 +86,12 @@
       }
     }
   }
+}
+
+.mat-icon {
+  cursor: pointer;
+}
+
+.mat-mdc-form-field {
+  height: 70px;
 }
