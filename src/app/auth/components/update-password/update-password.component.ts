@@ -6,6 +6,7 @@ import { ResetPasswordRequest } from '../../model/ResetPasswordRequest';
 import { ResetPasswordService } from '../../services/reset-password.service';
 import { Subject, takeUntil } from 'rxjs';
 import { SnackBarConfig } from '../../../shared/models/SnackBarConfig';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'update-password',
@@ -31,12 +32,20 @@ export class UpdatePasswordComponent implements OnDestroy, AfterContentInit {
   showPassword: boolean = false;
   showConfPassword: boolean = false;
 
+  closeLabel: string = '';
+  
+
   constructor(private formBuilder: FormBuilder,
               private snackBarService: SnackBarService,
-              private resetPasswordService: ResetPasswordService) {}
+              private resetPasswordService: ResetPasswordService,
+              private translate: TranslateService) {
+              }
 
   ngAfterContentInit(): void {
-    this.openSnackBar('An email has been sent to you with the code please check your account', 'snackbar-success');
+    this.openSnackBar(
+      'An email has been sent to you with the code please check your account',
+     'snackbar-success',
+     this.closeLabel);
   }
   
   ngOnDestroy(): void {
@@ -49,7 +58,10 @@ export class UpdatePasswordComponent implements OnDestroy, AfterContentInit {
       this.resetPasswordRequest = this.updatePasswordForm.value
 
       if(this.resetPasswordRequest.password !== this.confirmPassword.value) {
-        this.openSnackBar('The two passwords do not match', 'snackbar-err');
+        
+      this.closeLabel = this.translate.instant('closeSnackBarLabel');
+        this.openSnackBar(this.translate.instant('passwordsDoNotMatchErrorMessage'),
+         'snackbar-err', this.closeLabel);
       } else {
         this.resetPasswordService.resetPassword(this.resetPasswordRequest)
           .pipe(takeUntil(this.destroy$)).subscribe({
@@ -57,19 +69,22 @@ export class UpdatePasswordComponent implements OnDestroy, AfterContentInit {
             console.log(data);
           },
           error: (err) => {
-            this.openSnackBar(err.error,'snackbar-err');
+            this.openSnackBar(err.error,'snackbar-err', 'Close');
           }
         })
       }
     } else {
-      this.openSnackBar('Please fill all fields','snackbar-err');
+      this.closeLabel = this.translate.instant('closeSnackBarLabel');
+      this.openSnackBar(this.translate.instant('requiredFieldsErrorMessage'),
+      'snackbar-err', this.closeLabel);
     }
   }
 
-  private openSnackBar(message: string, className: string): void {
+  private openSnackBar(message: string, className: string, closeLabel: string): void {
     let snackbar: SnackBar = {
       message: message,
-      className: className
+      className: className,
+      closeLabel: closeLabel
     }
     this.snackBarService.openSnackBar(snackbar);
   }

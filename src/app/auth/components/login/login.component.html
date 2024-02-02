@@ -4,25 +4,25 @@
             <img src="../../../assets/img/logo.svg" alt="">
         </div>
         <div class="text-message">
-            <h1>Welcome to your restaurant management system</h1>
+            <h1>{{"login.title" | translate}}</h1>
         </div>
         <form [formGroup]="authRequestForm">
         <div class="form-content">
             <mat-form-field appearance="outline">
-                <mat-label>Username</mat-label>
-                <input formControlName="username" matInput placeholder="Enter your username">
+                <mat-label>{{"login.username.label" | translate}}</mat-label>
+                <input formControlName="username" matInput placeholder="{{'login.username.placeholder' | translate}}">
             </mat-form-field>
             <mat-form-field appearance="outline">
-                <mat-label>Password</mat-label>
-                <input formControlName="password" matInput [type]="password" placeholder="Enter your password">
+                <mat-label>{{"login.password.label" | translate}}</mat-label>
+                <input formControlName="password" matInput [type]="password" placeholder="{{'login.password.placeholder' | translate}}">
                 @if (!show) {
                     <mat-icon (click)="onClick()" matSuffix>remove_red_eye</mat-icon>
                 }@else {
                     <mat-icon (click)="onClick()" matSuffix>visibility_off</mat-icon>
                 }
             </mat-form-field>
-            <a routerLink="/verify-account">Forgot your password?</a>
-            <button id="login-btn" (click)="login()">Login</button>
+            <a routerLink="/verify-account">{{"login.forgotPassword" | translate}}</a>
+            <button id="login-btn" (click)="login()">{{"login.button" | translate}}</button>
             </div>
         </form>
     </div>

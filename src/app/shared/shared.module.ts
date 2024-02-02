@@ -12,6 +12,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import { ngxTranslateModule } from '../translate/translate.module';
 
 @NgModule({
   declarations: [ForbiddenComponent, SnackbarComponent, ProgressSpinnerComponent],
@@ -38,7 +39,8 @@ import { MatIconModule } from '@angular/material/icon';
     ProgressSpinnerComponent,
     MatFormFieldModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    ngxTranslateModule
   ],
 })
 export class SharedModule

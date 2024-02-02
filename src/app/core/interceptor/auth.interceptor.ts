@@ -50,8 +50,6 @@ export class AuthInterceptor implements HttpInterceptor {
 
     req = this.addAuthenticationToken(req);
 
-    console.log(req);
-
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
         // Check if the access token has expired, if true we use the refresh token to grant access

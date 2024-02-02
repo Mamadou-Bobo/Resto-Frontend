@@ -9,6 +9,7 @@ import { AuthService } from '../../../core/services/auth.service';
 import { JWTResponseDTO } from '../../../core/models/JWTResponseDTO';
 import { SnackBarService } from '../../../shared/services/snackbar.service';
 import { SnackBar } from '../../../shared/models/SnackBar';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -38,7 +39,9 @@ export class LoginComponent implements OnInit, OnDestroy {
               private formBuilder: FormBuilder,
               public router: Router,
               public authService: AuthService,
-              private snackBarService: SnackBarService) {}
+              private snackBarService: SnackBarService,
+              public translate: TranslateService) {
+              }
 
   ngOnDestroy(): void {
     this.destroy$.next(false);
@@ -52,6 +55,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   protected login(): void {
     let snackbar: any;
 
+    const closeLabel = this.translate.instant('closeSnackBarLabel');
+
     if(this.authRequestForm.valid) {
       this.authRequest = this.authRequestForm.value;
 
@@ -62,12 +67,13 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.router.navigate(['dashboard']);
         },
         error: (err: any) => {
-          snackbar = this.setSnackBar(err.error.reason,'snackbar-err');
+          snackbar = this.setSnackBar(err.error.reason,'snackbar-err', closeLabel);
           this.snackBarService.openSnackBar(snackbar);
         },
       });
     } else {
-      snackbar = this.setSnackBar('Please fill all fields','snackbar-err');
+      const translatedMsg = this.translate.instant('requiredFieldsErrorMessage');
+      snackbar = this.setSnackBar(translatedMsg,'snackbar-err', closeLabel);
       this.snackBarService.openSnackBar(snackbar);
     }
   }
@@ -82,10 +88,11 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
   }
 
-  private setSnackBar(message: string, className: string): SnackBar {
+  private setSnackBar(message: string, className: string, closeLabel: string): SnackBar {
     return {
       message: message,
-      className: className
+      className: className,
+      closeLabel: closeLabel
     }
   }
 }

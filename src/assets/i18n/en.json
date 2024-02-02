@@ -1,0 +1,36 @@
+{
+    "login": {
+        "title": "Welcome to your restaurant management system",
+        "username": {
+            "label": "Username",
+            "placeholder": "Enter your username"
+        },
+        "password": {
+            "label": "Password",
+            "placeholder": "Enter your password"
+        },
+        "forgotPassword": "Forgot password?",
+        "button": "Login"
+    },
+    "verifyAccount": {
+        "title": "Forgot your password? Don't worry! An email will be sent to you with instructions on how to reset your password",
+        "email": {
+            "label": "Email",
+            "placeholder": "Enter your email address"
+        },
+        "button": "Send code"
+    }, 
+    "resetPassword": {
+        "title": "Reset Password",
+        "confirmPassword": {
+            "label": "Password",
+            "placeholder": "Confirm your password"
+        },
+        "button": "Reset Password"
+    },
+    "requiredFieldsErrorMessage": "Please fill all fields",
+    "invalidEmailMessage": "Please enter a valid email",
+    "emptyEmailFieldMessage": "Please enter your email address",
+    "closeSnackBarLabel": "Close",
+    "passwordsDoNotMatchErrorMessage": "The two passwords do not match"
+}

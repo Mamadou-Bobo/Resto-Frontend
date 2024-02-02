@@ -1,0 +1,36 @@
+{
+    "login": {
+        "title": "Bienvenue dans votre système de gestion de restaurant",
+        "username": {
+            "label": "Nom d'utilisateur",
+            "placeholder": "Entrez votre nom d'utilisateur"
+        },
+        "password": {
+            "label": "Mot de passe",
+            "placeholder": "Entrez votre mot de passe"
+        },
+        "forgotPassword": "Mot de passe oublié ?",
+        "button": "Connexion"
+    },
+    "verifyAccount": {
+        "title": "Mot de passe oublié ? Pas de panique ! Un e-mail vous sera envoyé avec des instructions pour réinitialiser votre mot de passe",
+        "email": {
+            "label": "Email",
+            "placeholder": "Entrez votre adresse email"
+        },
+        "button": "Envoyer le code"
+    },
+    "resetPassword": {
+        "title": "Reinitilisation mot de passe",
+        "confirmPassword": {
+            "label": "Confirmer mot de passe",
+            "placeholder": "Confirmez votre mot de passe"
+        },
+        "button": "Reinitialiser mot de passe"
+    },
+    "requiredFieldsErrorMessage": "Veuillez remplir tous les champs",
+    "invalidEmailMessage": "Veuillez saisir une adresse email valid",
+    "emptyEmailFieldMessage": "Veuillez saisir votre adresse email",
+    "closeSnackBarLabel": "Fermer",
+    "passwordsDoNotMatchErrorMessage": "Les deux mots de passe ne correspondent pas"
+}

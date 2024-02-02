@@ -20,8 +20,6 @@ import { AuthService } from "../services/auth.service";
     
           if(role) {
             const match = this.authService.roleMatch(role);
-
-            console.log(match);
             if(match) {
               return true;
             } else {

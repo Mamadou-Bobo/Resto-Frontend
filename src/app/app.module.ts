@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthGuard } from './core/guard/auth.guard';
 import { AuthInterceptor } from './core/interceptor/auth.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ngxTranslateModule } from './translate/translate.module';
 
 @NgModule({
   declarations: [
@@ -17,11 +18,11 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     AuthModule,
     CoreModule,
-    DashboardModule,
-    BrowserAnimationsModule
+    DashboardModule
   ],
   providers: [
     AuthGuard,

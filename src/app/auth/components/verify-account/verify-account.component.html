@@ -4,15 +4,14 @@
             <img src="../../../assets/img/logo.svg" alt="">
         </div>
         <div class="text-message">
-            <h1>Forgot your password? 
-                Don't worry! An email will be sent to you with instructions on how to reset your password.</h1>
+            <h1>{{"verifyAccount.title" | translate}}</h1>
         </div>
         <div class="form-content">
             <mat-form-field appearance="outline">
-                <mat-label>Email</mat-label>
-                <input matInput [formControl]="resetPasswordForm" type="text" placeholder="Enter your email address">
+                <mat-label>{{"verifyAccount.email.label" | translate}}</mat-label>
+                <input matInput [formControl]="resetPasswordForm" type="text" placeholder="{{'verifyAccount.email.placeholder' | translate}}">
             </mat-form-field>
-            <button (click)="sendCode()">Send code</button>
+            <button (click)="sendCode()">{{"verifyAccount.button" | translate}}</button>
         </div>
     </div>
     <app-snackbar></app-snackbar>

@@ -31,7 +31,7 @@ export class SnackbarComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.snackBarService.snackbarSubject.subscribe({
       next: (data: SnackBar) => {
-        this.openSnackBar(data.message,data.className);
+        this.openSnackBar(data.message,data.className,data.closeLabel);
       },
       error(err) {
         console.log(err);
@@ -39,8 +39,8 @@ export class SnackbarComponent implements OnInit, OnChanges {
     });
   }
 
-  private openSnackBar(message: string, className: string) {
-    this._snackBar.open(message, 'Close', {
+  private openSnackBar(message: string, className: string, closeLabel: string) {
+    this._snackBar.open(message, closeLabel, {
       horizontalPosition: this.config.horizontalPosition,
       verticalPosition: this.config.verticalPosition,
       duration: this.duration * 1000,

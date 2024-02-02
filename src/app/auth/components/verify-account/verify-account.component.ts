@@ -6,6 +6,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { SnackBarService } from '../../../shared/services/snackbar.service';
 import { SnackBar } from '../../../shared/models/SnackBar';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'verify-account',
@@ -29,7 +30,8 @@ export class VerifyAccountComponent implements OnDestroy {
 
   constructor(private resetPasswordService: ResetPasswordService,
               private snackBarService: SnackBarService,
-              private router: Router) {}
+              private router: Router,
+              public translate: TranslateService) {}
 
   ngOnDestroy(): void {
     this.destroy$.next(false);
@@ -37,6 +39,9 @@ export class VerifyAccountComponent implements OnDestroy {
   }
 
   protected sendCode(): void {
+    
+    const closeLabel = this.translate.instant('closeSnackBarLabel');
+
     if(this.resetPasswordForm.valid) {
 
       this.isLoading = true;
@@ -60,16 +65,19 @@ export class VerifyAccountComponent implements OnDestroy {
 
 
     } else if(this.resetPasswordForm.hasError('pattern')) {
-      this.openSnackBar('Please enter a valid email','snackbar-err');
+      const translatedMsg = this.translate.instant('invalidEmailMessage');
+      this.openSnackBar(translatedMsg,'snackbar-err',closeLabel);
     } else {
-      this.openSnackBar('Please enter your email address','snackbar-err');
+      const translatedMsg = this.translate.instant('emptyEmailFieldMessage');
+      this.openSnackBar(translatedMsg,'snackbar-err',closeLabel);
     }
   }
 
-  private openSnackBar(message: string, className: string): void {
+  private openSnackBar(message: string, className: string, closeLabel: string): void {
     let snackbar: SnackBar = {
       message: message,
-      className: className
+      className: className,
+      closeLabel: closeLabel
     }
     this.snackBarService.openSnackBar(snackbar);
   }
